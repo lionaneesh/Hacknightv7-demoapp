@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+    {% block title %}Byld Hacknight Demo{% endblock %}
+    {% block container %}
+        {% if posts %}
+            <h2>{{viewing}}'s posts</h2>
+            <hr>
+            {% for post in posts %}
+                <div class="alert alert-success">
+                    {{post.content}} - <a href="/post/{{post.key().id()}}"><b>permalink</b></a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endblock %}
+

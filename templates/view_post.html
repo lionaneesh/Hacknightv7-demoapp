@@ -9,12 +9,15 @@
             <h3><a href="/users/{{post.user.email()}}">{{post.user}}</a> posted</p></h3>
             <div class="alert alert-success">
                 {{post.content}} <span class="label label-info">liked by {{post.likes}} people</span> - <a href="/post/like/{{post.key().id()}}">like</a>
-                <h3>Liked by:</h3>
-                <ul>
-                    {% for email in post.liked_by %}
-                    <li><a href="/users/{{email}}">{{email}}</a></li>
-                    {% endfor %}
-                </ul>
+            </div>
+            {% if post.liked_by %}
+            <h3>Liked by:</h3>
+            <ul>
+                {% for email in post.liked_by %}
+                <li><a href="/users/{{email}}">{{email}}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             </div>
         </div>
 	{% endblock %}

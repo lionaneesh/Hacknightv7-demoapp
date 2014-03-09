@@ -75,7 +75,10 @@ class like_post(Handler):
                 u.liked_by.append(poster.email())
                 u.likes += 1
                 u.put()
-                self.redirect("/post/" + id)
+            else:
+                self.error(304)
+            self.redirect("/post/" + id)
+
 
 class view_user(Handler):
     def get(self, email):

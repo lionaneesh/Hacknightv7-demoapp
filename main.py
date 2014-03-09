@@ -64,6 +64,19 @@ class view_post(Handler):
                         post=u,
                         poster=poster)
 
+class like_post(Handler):
+    def get(self, id):
+        poster = users.get_current_user()
+        u = Post.get_by_id(int(id))
+        if u == None:
+            self.error(404);
+        else:
+            if poster.email() not in u.liked_by:
+                u.liked_by.append(poster.email())
+                u.likes += 1
+                u.put()
+                self.redirect("/post/" + id)
+
 class view_user(Handler):
     def get(self, email):
         poster = users.get_current_user()
@@ -80,4 +93,5 @@ class view_user(Handler):
 
 app = webapp2.WSGIApplication([(r'/', home),
                                (r'/post/([0-9]+)', view_post),
+                               (r'/post/like/([0-9]+)', like_post),
                                (r'/users/(.+)', view_user)], debug=True)

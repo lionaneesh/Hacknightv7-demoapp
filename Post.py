@@ -20,4 +20,5 @@ class Post(db.Model):
     content       = db.TextProperty(required = True)
     user          = db.UserProperty(required = True)
     created       = db.DateTimeProperty(auto_now_add = True)
-    private       = db.BooleanProperty(default = False)
+    likes		  = db.IntegerProperty(default = 0)
+    liked_by 	  = db.StringListProperty(default = [])

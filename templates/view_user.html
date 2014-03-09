@@ -6,7 +6,7 @@
             <hr>
             {% for post in posts %}
                 <div class="alert alert-success">
-                    {{post.content}} - <a href="/post/{{post.key().id()}}"><b>permalink</b></a>
+                    {{post.content}} <span class="label label-info">liked by {{post.likes}} people</span> - <a href="/post/like/{{post.key().id()}}"><b>like</b></a> - <a href="/post/{{post.key().id()}}"><b>permalink</b></a>
                 </div>
             {% endfor %}
         {% endif %}
